@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -l | chmod 752 hello  

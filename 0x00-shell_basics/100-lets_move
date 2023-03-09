@@ -1,2 +1,3 @@
 #!/bin/bash
-mv -un[:upper:]* /tmp/u
+mv -u[:upper:]* /tmp/u
+

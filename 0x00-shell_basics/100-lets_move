@@ -1,2 +1,2 @@
 #!/bin/bash
-cp -u[:upper:]* /tmp/u
+cp -un[:upper:]* /tmp/u

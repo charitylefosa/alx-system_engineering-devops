@@ -1,2 +1,2 @@
 #!/bin/bash
-file -C School
+file School

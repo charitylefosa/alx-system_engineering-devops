@@ -1,2 +1,2 @@
 #!/bin/bash
-cp -un[:upper:]* /tmp/u
+mv -un[:upper:]* /tmp/u

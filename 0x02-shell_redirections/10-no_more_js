@@ -1,2 +1,2 @@
 #!/bin/bash
-rm type -f *.js
+find . -type d -not -name '.' | wc -ls

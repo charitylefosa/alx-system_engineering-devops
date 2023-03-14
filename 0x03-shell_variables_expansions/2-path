@@ -1,2 +1,2 @@
 #!/bin/bash
-echo :/action | sort -n | tail
+Export PATH=$PATH:/action | sort -n | tail -1

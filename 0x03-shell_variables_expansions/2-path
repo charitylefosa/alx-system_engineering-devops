@@ -1,2 +1,2 @@
 #!/bin/bash
-echo /action > /PATH/ | sort -n | tail -n
+echo /action > /PATH/ | sort -n | tail

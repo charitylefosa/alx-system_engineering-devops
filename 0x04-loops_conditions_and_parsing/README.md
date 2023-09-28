@@ -1,4 +1,6 @@
 0x04. Loops, conditions and parsing
+Project start date Sep 28, 2023
+	end date Sep 29, 2023
 
 Learning:
 How to create SSH keys

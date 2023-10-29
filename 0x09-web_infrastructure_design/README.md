@@ -1,6 +1,6 @@
 0x09. Web infrastructure design
 
-concepts in this project:
+Concepts in this project:
 DNS
 Monitoring
 Web Server

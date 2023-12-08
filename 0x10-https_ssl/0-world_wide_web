@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Bash script that will display information about subdomains.
-
 function check_subdomain {
     dig "${2}"."$1" | grep -A1 'ANSWER SECTION:' | \
     awk 'FNR == 2 {printf "The subdomain %s is a %s record and points to %s\n", var, $4, $5}' var="$2"
@@ -20,4 +19,3 @@ then
 else
     check_subdomain "$1" "$2"
 fi
-

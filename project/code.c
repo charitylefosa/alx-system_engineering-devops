@@ -42,11 +42,23 @@ int main() {
 
     // Define an array of sample songs
     struct Song songs[] = {
-        {"I love you Lord", "Artist1", "Gospel"},
-        {"Song2", "Artist2", "Amapiano"},
-        {"Song3", "Artist3", "Jazz"},
-        {"Song4", "Artist4", "R&B"},
-        // Add more songs as needed
+        {"Don't Let Me Die", "Rebecca Malope", "Gospel"},
+        {"Masimdumise", "Rebecca Malope", "Gospel"},
+        {"Baya Vuya", "Rebecca Malope", "Gospel"},
+        {"Unamandla", "Rebecca Malope", "Gospel"},
+        {"Umoya Wam", "Rebecca Malope", "Gospel"},
+        {"Kurhula", "Kelvin Momo", "Amapiano"},
+        {"Uthando", "Kelvin Momo", "Amapiano"}
+        {"Fool me", "Kelvin Momo", "Amapiano"}
+        {"Amanxeba", "Kelvin Momo", "Amapiano"}
+        {"Kgomo", "Jonas Gwangwa", "Jazz"},
+        {"Morwa", "Jonas Gwangwa", "Jazz"},
+        {"Batsumi", "Jonas Gwangwa", "Jazz"},
+        {"Diphororo", "Jonas Gwangwa", "Jazz"},
+        {"Suited", "Shekhinah", "R&B"},
+        {"Questions", "Shekhinah", "R&B"},
+        {"Please Mr", "Shekhinah", "R&B"},
+        {"Water", "Shekhinah", "R&B"},
     };
 
     int numSongs = sizeof(songs) / sizeof(songs[0]);

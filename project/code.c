@@ -10,6 +10,8 @@ struct Song {
     char genre[20];
 };
 
+
+
 // Function to recommend a song based on the selected genre
 void recommendSong(const char* selectedGenre, const struct Song* songs, int numSongs) {
     // Create an array to store recommended songs
@@ -18,7 +20,19 @@ void recommendSong(const char* selectedGenre, const struct Song* songs, int numS
 
     // Loop through the songs to find recommendations
     for (int i = 0; i < numSongs; ++i) {
-        if (strcmp(songs[i].genre, selectedGenre) == 0) {
+        // Convert both user input and genre in the songs array to lowercase
+        char lowercaseUserGenre[20];
+        char lowercaseSongGenre[20];
+        strcpy(lowercaseUserGenre, selectedGenre);
+        strcpy(lowercaseSongGenre, songs[i].genre);
+        for (int j = 0; lowercaseUserGenre[j]; ++j) {
+            lowercaseUserGenre[j] = tolower(lowercaseUserGenre[j]);
+        }
+        for (int j = 0; lowercaseSongGenre[j]; ++j) {
+            lowercaseSongGenre[j] = tolower(lowercaseSongGenre[j]);
+        }
+
+        if (strcmp(lowercaseSongGenre, lowercaseUserGenre) == 0) {
             recommendedSongs[recommendedCount] = songs[i];
             recommendedCount++;
 

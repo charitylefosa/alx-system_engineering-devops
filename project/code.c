@@ -63,8 +63,10 @@ int main() {
 
     int numSongs = sizeof(songs) / sizeof(songs[0]);
 
-    // Simulate user selecting a genre (for simplicity)
-    const char* selectedGenre = "Gospel";
+    // Ask the user for the genre they are looking for
+    char userGenre[20];
+    printf("Enter the genre you are looking for: ");
+    scanf("%s", userGenre);
 
     // Recommend a song based on the selected genre
     recommendSong(selectedGenre, songs, numSongs);

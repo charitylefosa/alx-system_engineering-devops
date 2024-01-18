@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 
 // Define a structure for a Song
 struct Song {
@@ -62,9 +63,9 @@ int main() {
         {"Unamandla", "Rebecca Malope", "Gospel"},
         {"Umoya Wam", "Rebecca Malope", "Gospel"},
         {"Kurhula", "Kelvin Momo", "Amapiano"},
-        {"Uthando", "Kelvin Momo", "Amapiano"}
-        {"Fool me", "Kelvin Momo", "Amapiano"}
-        {"Amanxeba", "Kelvin Momo", "Amapiano"}
+        {"Uthando", "Kelvin Momo", "Amapiano"},
+        {"Fool me", "Kelvin Momo", "Amapiano"},
+        {"Amanxeba", "Kelvin Momo", "Amapiano"},
         {"Kgomo", "Jonas Gwangwa", "Jazz"},
         {"Morwa", "Jonas Gwangwa", "Jazz"},
         {"Batsumi", "Jonas Gwangwa", "Jazz"},
@@ -83,8 +84,7 @@ int main() {
     scanf("%s", userGenre);
 
     // Recommend a song based on the selected genre
-    recommendSong(selectedGenre, songs, numSongs);
+    recommendSong(userGenre, songs, numSongs);
 
     return 0;
 }
-

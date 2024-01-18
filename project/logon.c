@@ -1,151 +1,88 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include <stdbool.h>
 
-#define MAX_USERS 100
-
+// Define a structure for a User
 struct User {
-    char username[50];
-    char password[50];
+    char username[20];
+    char password[20];
 };
 
-// Function to read user data from a file
-int readUsers(struct User users[MAX_USERS], int *numUsers) {
-    FILE *file = fopen("users.txt", "r");
-    if (file == NULL) {
-        perror("Error opening file");
-        return 0;
-    }
-
-    *numUsers = 0;
-    while (*numUsers < MAX_USERS && fscanf(file, "%s %s", users[*numUsers].username, users[*numUsers].password) == 2) {
-        (*numUsers)++;
-    }
-
-    fclose(file);
-    return 1;
-}
-
-// Function to write user data to a file
-int writeUsers(const struct User users[MAX_USERS], int numUsers) {
-    FILE *file = fopen("users.txt", "w");
-    if (file == NULL) {
-        perror("Error opening file");
-        return 0;
-    }
-
-    for (int i = 0; i < numUsers; ++i) {
-        fprintf(file, "%s %s\n", users[i].username, users[i].password);
-    }
-
-    fclose(file);
-    return 1;
-}
-
-// Function to check if a username already exists
-bool usernameExists(const struct User users[MAX_USERS], int numUsers, const char *username) {
-    for (int i = 0; i < numUsers; ++i) {
-        if (strcmp(users[i].username, username) == 0) {
-            return true;
-        }
-    }
-    return false;
-}
-
 // Function to register a new user
-void registerUser(struct User users[MAX_USERS], int *numUsers) {
-    char username[50];
-    char password[50];
-
+void registerUser(struct User* users, int* numUsers) {
     printf("Enter your username: ");
-    scanf("%s", username);
-
-    if (usernameExists(users, *numUsers, username)) {
-        printf("Username already exists. Please choose a different username.\n");
-        return;
-    }
+    scanf("%s", users[*numUsers].username);
 
     printf("Enter your password: ");
-    scanf("%s", password);
-
-    // Hash the password (in a real application, use a proper hashing algorithm)
-    // For simplicity, we just copy the password
-    strcpy(users[*numUsers].username, username);
-    strcpy(users[*numUsers].password, password);
+    scanf("%s", users[*numUsers].password);
 
     (*numUsers)++;
-
-    if (writeUsers(users, *numUsers)) {
-        printf("Registration successful.\n");
-    } else {
-        printf("Error writing to file. Registration failed.\n");
-    }
+    printf("Registration successful!\n");
 }
 
-// Function to authenticate a user
-bool authenticateUser(const struct User users[MAX_USERS], int numUsers, const char *username, const char *password) {
+// Function to check if the user is registered
+int loginUser(const struct User* users, int numUsers, const char* username, const char* password) {
     for (int i = 0; i < numUsers; ++i) {
         if (strcmp(users[i].username, username) == 0 && strcmp(users[i].password, password) == 0) {
-            return true;
+            return 1; // User found and login successful
         }
     }
-    return false;
-}
-
-// Function to log in
-bool loginUser(const struct User users[MAX_USERS], int numUsers, char username[50], char password[50]) {
-    printf("Enter your username: ");
-    scanf("%s", username);
-
-    printf("Enter your password: ");
-    scanf("%s", password);
-
-    return authenticateUser(users, numUsers, username, password);
+    return 0; // User not found or incorrect password
 }
 
 int main() {
-    struct User users[MAX_USERS];
+    // Define an array to store users
+    struct User users[10];
     int numUsers = 0;
 
-    if (!readUsers(users, &numUsers)) {
-        printf("Error reading user data.\n");
-        return 1;
-    }
-
+    // Menu for login/register
     int choice;
-    char username[50];
-    char password[50];
-
     do {
-        printf("1. Login\n");
-        printf("2. Register\n");
+        printf("1. Register\n");
+        printf("2. Login\n");
         printf("3. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
         switch (choice) {
             case 1:
-                if (loginUser(users, numUsers, username, password)) {
-                    printf("Login successful.\n");
-                    // Call your music recommendation function here
-                    const char* selectedGenre = "Gospel";  // Example genre
-                    recommendSong(selectedGenre, songs, numSongs);
+                if (numUsers < 10) {
+                    registerUser(users, &numUsers);
                 } else {
-                    printf("Login failed. Incorrect username or password.\n");
+                    printf("Maximum users reached. Cannot register more users.\n");
                 }
                 break;
-            case 2:
-                registerUser(users, &numUsers);
+
+            case 2: {
+                char username[20];
+                char password[20];
+
+                printf("Enter your username: ");
+                scanf("%s", username);
+
+                printf("Enter your password: ");
+                scanf("%s", password);
+
+                if (loginUser(users, numUsers, username, password)) {
+                    printf("Login successful!\n");
+
+                    // Code for recommending music can go here
+
+                    // Example:
+                    printf("User is now ready to explore music recommendations.\n");
+                } else {
+                    printf("Login failed. Invalid username or password.\n");
+                }
                 break;
+            }
+
             case 3:
-                printf("Exiting program.\n");
+                printf("Exiting...\n");
                 break;
+
             default:
                 printf("Invalid choice. Please enter a valid option.\n");
         }
-
     } while (choice != 3);
 
     return 0;
